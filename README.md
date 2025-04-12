@@ -2,7 +2,7 @@
 
 A Visual Studio Code extension that provides autocompletion support for the [Chevere Workflow](https://github.com/chevere/workflow) PHP package.
 
-![Chevere Workflow Extension Screenshot](assets/imgs/screenshot.png)
+![Chevere Workflow Extension Screenshot](https://raw.githubusercontent.com/doonfrs/chevere-workflow-vscode/refs/heads/main/assets/imgs/screenshot.png)
 
 ## Features
 
