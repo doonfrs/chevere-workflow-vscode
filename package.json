@@ -1,0 +1,68 @@
+{
+  "name": "chevere-workflow-vscode",
+  "displayName": "Chevere Workflow",
+  "description": "Provides autocompletion support for Chevere Workflow PHP package",
+  "version": "0.1.0",
+  "publisher": "chevere",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:php"
+  ],
+  "main": "./src/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "chevere-workflow.showHelp",
+        "title": "Chevere Workflow: Show Help"
+      }
+    ],
+    "languages": [
+      {
+        "id": "php",
+        "extensions": [
+          ".php"
+        ]
+      }
+    ],
+    "snippets": [
+      {
+        "language": "php",
+        "path": "./snippets/workflow.code-snippets"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run lint",
+    "lint": "eslint src --ext js",
+    "test": "node ./test/runTest.js",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^2.19.0",
+    "eslint": "^8.40.0",
+    "vscode-test": "^1.6.1"
+  },
+  "keywords": [
+    "php",
+    "workflow",
+    "chevere",
+    "autocomplete"
+  ],
+  "author": "",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/trinavoprivate/chevere-workflow-vscode.git"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/trinavoprivate/chevere-workflow-vscode/issues"
+  },
+  "homepage": "https://gitlab.com/trinavoprivate/chevere-workflow-vscode#readme"
+}

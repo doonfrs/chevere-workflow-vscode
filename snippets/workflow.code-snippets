@@ -1,0 +1,72 @@
+{
+    "Chevere Workflow Import": {
+        "prefix": "chevere-workflow-import",
+        "body": [
+            "use function Chevere\\Workflow\\{workflow, sync, async, variable, response, run};"
+        ],
+        "description": "Import all Chevere Workflow functions"
+    },
+    "Chevere Workflow Class": {
+        "prefix": "chevere-workflow-class",
+        "body": [
+            "use Chevere\\Workflow\\WorkflowTrait;",
+            "",
+            "class ${1:MyWorkflow}",
+            "{",
+            "    use WorkflowTrait;",
+            "",
+            "    public function __construct()",
+            "    {",
+            "        \\$workflow = workflow(",
+            "            ${2:job1}: sync(",
+            "                new ${3:MyAction}(),",
+            "                ${4:param}: ${5:variable('input')}$0",
+            "            )",
+            "        );",
+            "        \\$this->execute(\\$workflow, ${6:input}: '${7:value}');",
+            "    }",
+            "}"
+        ],
+        "description": "Create a class using WorkflowTrait"
+    },
+    "Chevere Workflow Try-Catch": {
+        "prefix": "chevere-workflow-try",
+        "body": [
+            "try {",
+            "    \\$run = run(\\$${1:workflow}, ${2:variableName}: ${3:'value'}$0);",
+            "} catch (\\Chevere\\Workflow\\Exceptions\\WorkflowException \\$e) {",
+            "    // Job that thrown the exception",
+            "    \\$jobName = \\$e->name;",
+            "    // Job instance that thrown the exception",
+            "    \\$job = \\$e->job;",
+            "    // The exception thrown by the Job",
+            "    \\$exception = \\$e->throwable;",
+            "}"
+        ],
+        "description": "Try-catch block for workflow error handling"
+    },
+    "Chevere Action Class": {
+        "prefix": "chevere-action",
+        "body": [
+            "use Chevere\\Action\\Action;",
+            "use Chevere\\Parameter\\Attributes\\StringParameter;",
+            "use Chevere\\Parameter\\Interfaces\\ParametersInterface;",
+            "",
+            "final class ${1:MyAction} extends Action",
+            "{",
+            "    public function __construct(",
+            "        #[StringParameter]",
+            "        private string \\$${2:param} = '',",
+            "    ) {",
+            "    }",
+            "",
+            "    public function run(): string",
+            "    {",
+            "        // Process logic here",
+            "        return ${3:'success'};",
+            "    }",
+            "}"
+        ],
+        "description": "Create a basic Chevere Action class"
+    }
+} 

@@ -1,0 +1,9 @@
+{
+    "php.suggest.basic": false,
+    "editor.formatOnSave": true,
+    "javascript.format.enable": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    }
+}

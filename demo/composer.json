@@ -1,0 +1,17 @@
+{
+    "name": "chevere-workflow/vscode-demo",
+    "autoload": {
+        "psr-4": {
+            "ChevereWorkflow\\VscodeDemo\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Feras Abdalrahman",
+            "email": "doonfrs@gmail.com"
+        }
+    ],
+    "require": {
+        "chevere/workflow": "^1.0"
+    }
+}
