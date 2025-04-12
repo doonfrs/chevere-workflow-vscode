@@ -2,8 +2,9 @@
   "name": "chevere-workflow-vscode",
   "displayName": "Chevere Workflow",
   "description": "Provides autocompletion support for Chevere Workflow PHP package",
-  "version": "0.1.0",
-  "publisher": "chevere",
+  "version": "0.1.1",
+  "publisher": "doonfrs",
+  "icon": "assets/imgs/icon.png",
   "type": "commonjs",
   "engines": {
     "vscode": "^1.70.0"
