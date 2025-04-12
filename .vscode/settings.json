@@ -1,9 +1,12 @@
 {
-    "php.suggest.basic": false,
-    "editor.formatOnSave": true,
-    "javascript.format.enable": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "explicit"
-    }
+  "php.suggest.basic": false,
+  "editor.formatOnSave": true,
+  "javascript.format.enable": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  }
 }

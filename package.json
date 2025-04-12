@@ -4,6 +4,7 @@
   "description": "Provides autocompletion support for Chevere Workflow PHP package",
   "version": "0.1.0",
   "publisher": "chevere",
+  "type": "commonjs",
   "engines": {
     "vscode": "^1.70.0"
   },

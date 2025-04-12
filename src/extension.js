@@ -1,4 +1,4 @@
-const vscode = require("vscode");
+const vscode = require('vscode');
 
 /**
  * Chevere Workflow completions provider for PHP files
@@ -7,47 +7,47 @@ class ChevereWorkflowCompletionProvider {
     constructor() {
         // Function patterns from Chevere Workflow
         this.workflowFunctions = [{
-                name: "workflow",
-                snippet: "workflow(\n\t${1:jobName}: ${2:jobDefinition},\n\t$0\n)",
-                description: "Creates a new workflow with named jobs",
+                name: 'workflow',
+                snippet: 'workflow(\n\t${1:jobName}: ${2:jobDefinition},\n\t$0\n)',
+                description: 'Creates a new workflow with named jobs',
             },
             {
-                name: "sync",
-                snippet: "sync(\n\tnew ${1:ActionClass}(),\n\t${2:paramName}: ${3:paramValue}$0\n)",
-                description: "Creates a synchronous job",
+                name: 'sync',
+                snippet: 'sync(\n\tnew ${1:ActionClass}(),\n\t${2:paramName}: ${3:paramValue}$0\n)',
+                description: 'Creates a synchronous job',
             },
             {
-                name: "async",
-                snippet: "async(\n\tnew ${1:ActionClass}(),\n\t${2:paramName}: ${3:paramValue}$0\n)",
-                description: "Creates an asynchronous job",
+                name: 'async',
+                snippet: 'async(\n\tnew ${1:ActionClass}(),\n\t${2:paramName}: ${3:paramValue}$0\n)',
+                description: 'Creates an asynchronous job',
             },
             {
-                name: "variable",
-                snippet: "variable('${1:name}')",
-                description: "References a workflow variable",
+                name: 'variable',
+                snippet: 'variable(\'${1:name}\')',
+                description: 'References a workflow variable',
             },
             {
-                name: "response",
-                snippet: "response('${1:jobName}', '${2:responseName}')",
-                description: "References a response from another job",
+                name: 'response',
+                snippet: 'response(\'${1:jobName}\', \'${2:responseName}\')',
+                description: 'References a response from another job',
             },
             {
-                name: "run",
-                snippet: "run(\n\tworkflow: \\$${1:workflow},\n\targuments: [\n\t\t'${2:variableName}' => ${3:value},\n\t\t$0\n\t]\n)",
-                description: "Runs a workflow with provided variables",
+                name: 'run',
+                snippet: 'run(\n\tworkflow: \\$${1:workflow},\n\targuments: [\n\t\t\'${2:variableName}\' => ${3:value},\n\t\t$0\n\t]\n)',
+                description: 'Runs a workflow with provided variables',
             },
         ];
 
         // Job modification methods
         this.jobMethods = [{
-                name: "withRunIf",
-                snippet: "withRunIf(\n\t${1:variable('condition')},\n\t$0\n)",
-                description: "Adds conditional execution to a job",
+                name: 'withRunIf',
+                snippet: 'withRunIf(\n\t${1:variable(\'condition\')},\n\t$0\n)',
+                description: 'Adds conditional execution to a job',
             },
             {
-                name: "withDepends",
-                snippet: "withDepends('${1:jobName}'$0)",
-                description: "Adds explicit dependency to a job",
+                name: 'withDepends',
+                snippet: 'withDepends(\'${1:jobName}\'$0)',
+                description: 'Adds explicit dependency to a job',
             },
         ];
     }
@@ -77,15 +77,15 @@ class ChevereWorkflowCompletionProvider {
 
         // If we're directly after a function or method call (or in a blank context)
         if (
-            linePrefix.trim() === "" ||
-            linePrefix.trim().endsWith("use function Chevere\\Workflow\\") ||
-            linePrefix.trim().endsWith(";")
+            linePrefix.trim() === '' ||
+            linePrefix.trim().endsWith('use function Chevere\\Workflow\\') ||
+            linePrefix.trim().endsWith(';')
         ) {
             this.addFunctionCompletions(completions);
         }
 
         // If we're after a job definition and possibly wanting a method
-        if (linePrefix.trim().endsWith(")")) {
+        if (linePrefix.trim().endsWith(')')) {
             this.addMethodCompletions(completions);
         }
 
@@ -99,7 +99,7 @@ class ChevereWorkflowCompletionProvider {
 
         if (isAfterClassInstance && isInsideSyncAsync) {
             const className = this.extractClassName(document, position);
-            console.log(`Extracted class name: ${className || "none found"}`);
+            console.log(`Extracted class name: ${className || 'none found'}`);
 
             if (className) {
                 // Find parameters for this class by analyzing the document
@@ -138,9 +138,9 @@ class ChevereWorkflowCompletionProvider {
     isChevereWorkflowFile(fileText) {
         // Check for imports or namespace usage related to Chevere Workflow
         return (
-            fileText.includes("Chevere\\Workflow") ||
-            fileText.includes("use function Chevere\\Workflow\\") ||
-            fileText.includes("use Chevere\\Workflow\\")
+            fileText.includes('Chevere\\Workflow') ||
+            fileText.includes('use function Chevere\\Workflow\\') ||
+            fileText.includes('use Chevere\\Workflow\\')
         );
     }
 
@@ -150,7 +150,7 @@ class ChevereWorkflowCompletionProvider {
     isAfterNewClassInstance(document, position) {
         // Check the current line to see if it's empty or contains only whitespace
         const currentLine = document.lineAt(position).text.trim();
-        if (currentLine === "" || currentLine === ",") {
+        if (currentLine === '' || currentLine === ',') {
             // Start from current line and go backwards up to 5 lines
             const startLine = Math.max(0, position.line - 5);
 
@@ -250,7 +250,7 @@ class ChevereWorkflowCompletionProvider {
                     const char = classStart[i];
 
                     // Skip string content
-                    if ((char === '"' || char === "'") && (i === 0 || classStart[i - 1] !== '\\')) {
+                    if ((char === '"' || char === '\'') && (i === 0 || classStart[i - 1] !== '\\')) {
                         if (!insideString) {
                             insideString = true;
                             stringChar = char;
@@ -363,7 +363,7 @@ class ChevereWorkflowCompletionProvider {
             );
             item.documentation = new vscode.MarkdownString(func.description);
             item.insertText = new vscode.SnippetString(func.snippet);
-            item.detail = "Chevere Workflow";
+            item.detail = 'Chevere Workflow';
             completions.push(item);
         }
     }
@@ -379,7 +379,7 @@ class ChevereWorkflowCompletionProvider {
             );
             item.documentation = new vscode.MarkdownString(method.description);
             item.insertText = new vscode.SnippetString(`->${method.snippet}`);
-            item.detail = "Chevere Workflow Job method";
+            item.detail = 'Chevere Workflow Job method';
             completions.push(item);
         }
     }
@@ -389,22 +389,22 @@ class ChevereWorkflowCompletionProvider {
  * Activate the extension
  */
 function activate(context) {
-    console.log("Chevere Workflow extension is now active");
+    console.log('Chevere Workflow extension is now active');
 
     // Register completions provider for PHP files
     const provider = new ChevereWorkflowCompletionProvider();
     const selector = {
-        language: "php",
-        scheme: "file"
+        language: 'php',
+        scheme: 'file'
     };
 
     // Register command to show help
     const showHelpCommand = vscode.commands.registerCommand(
-        "chevere-workflow.showHelp",
+        'chevere-workflow.showHelp',
         () => {
             const helpPanel = vscode.window.createWebviewPanel(
-                "chevereWorkflowHelp",
-                "Chevere Workflow Help",
+                'chevereWorkflowHelp',
+                'Chevere Workflow Help',
                 vscode.ViewColumn.One, {}
             );
 
